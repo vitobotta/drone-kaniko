@@ -38,6 +38,11 @@ if [[ "${PLUGIN_SKIP_TLS_VERIFY:-}" == "true" ]]; then
     EXTRA_OPTS="--skip-tls-verify=true"
 fi
 
+if [ -n "${PLUGIN_CACHE_REPO}" ]; then
+# if [[ "${PLUGIN_CACHE_REPO:-}" == "true" ]]; then
+    CACHE_REPO="--cache-repo=${PLUGIN_CACHE_REPO}"
+fi
+
 if [[ "${PLUGIN_CACHE:-}" == "true" ]]; then
     CACHE="--cache=true"
 fi
@@ -68,6 +73,7 @@ fi
     ${EXTRA_OPTS} \
     ${DESTINATIONS} \
     ${CACHE:-} \
+    ${CACHE_REPO:-} \
     ${TARGET:-} \
     ${BUILD_ARGS:-} \
     ${BUILD_ARGS_FROM_ENV:-}
